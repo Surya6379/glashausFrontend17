@@ -1,0 +1,83 @@
+<mat-toolbar color="primary">
+    <button *ngIf="loggedInUser?.userType === 'admin'" (click)="sidenav.toggle()" mat-icon-button
+        class="noBorder primary" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="ml15">Glashaus</span>
+    <span class="spacer"></span>
+    <span>{{loggedInUser?.userName}}</span>
+    <span *ngIf="loggedInUser?.userType === 'admin'">(admin)</span>
+</mat-toolbar>
+<mat-sidenav-container class="sidenavContainer" autosize>
+    <mat-sidenav #sidenav class="example-sidenav" mode="side">
+        <mat-nav-list class="sideNavList">
+            <ng-container *ngFor="let option of sideNavBarOptions">
+                <mat-checkbox [(ngModel)]="option.state" class="checkboxStyle">{{option.name}}</mat-checkbox>
+                <br />
+            </ng-container>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="text-center">
+        <div class="row toggleContainer texe-center">
+            <div class="col">
+                <mat-slide-toggle class="toggleSize col"></mat-slide-toggle><span
+                    class="col toggleSize">🪟Windows</span>
+            </div>
+            <div class="col">
+                <mat-slide-toggle class="toggleSize col"></mat-slide-toggle><span class="col toggleSize">🚪Garden main
+                    door</span>
+            </div>
+            <div class="col">
+                <mat-slide-toggle class="toggleSize col"></mat-slide-toggle><span class="col toggleSize">🚿Water
+                    Spray</span>
+            </div>
+        </div>
+        <div class="row">
+            <ng-container *ngFor="let option of sideNavBarOptions; let i = index">
+                <mat-card *ngIf="option.state" class=" col-md-4 box">
+                    <mat-card-title>
+                        <h4>{{option.name}}</h4>
+                    </mat-card-title>
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <mat-form-field class="fomrField">
+                                    <mat-label>Time Period</mat-label>
+                                    <mat-select (selectionChange)="timePeriodSetter(option.timePeriod,option.id)"
+                                        [(ngModel)]="option.timePeriod">
+                                        <mat-option *ngFor="let time of timePeriodOptions"
+                                            [value]="time">{{time}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3" style="margin-left: 25%;">
+                                <mat-form-field class="fomrField">
+                                    <mat-label>Graph Type</mat-label>
+                                    <mat-select (selectionChange)="graphTypeSetter(option.graphType,option.id)"
+                                        [(ngModel)]="option.graphType">
+                                        <mat-option *ngFor="let graph of graphOptions"
+                                            [value]="graph">{{graph}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="option.graphType !== 'number'">
+                            <canvas baseChart style="width: 100%; height: 200px;" [datasets]="option.data"
+                                [labels]="option.labels" [options]="lineChartOptions"
+                                [type]="option.graphType"></canvas>
+                        </ng-container>
+                        <ng-container *ngIf="option.graphType === 'number'">
+                            <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'
+                                type='text/css'>
+                            <span [ngStyle]="{'color': (+option.data[0].data.slice(-1)>50) ? 'rgb(227, 13, 13)' : 'rgb(25, 212, 97)'}"
+                                class="temperatureFont">
+                                {{+option.data[0].data.slice(-1)| number: '1.0-1'}}
+                            </span>
+                        </ng-container>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
+
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

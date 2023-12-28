@@ -1,0 +1,18 @@
+<div class="center-container">
+    <mat-card class="center-card">
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-content>
+            <mat-form-field class="full-width">
+                <mat-label>Username</mat-label>
+                <input [(ngModel)]="username" matInput type="text">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input [(ngModel)]="password" matInput [type]="hidePassword ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </mat-form-field>
+            <button [disabled]="username === '' || password === ''" mat-raised-button color="primary" (click)="login()">Log In</button>            
+            <a class="row newUserStyle" routerLink="/register">New User?</a>
+        </mat-card-content>
+    </mat-card>
+</div>

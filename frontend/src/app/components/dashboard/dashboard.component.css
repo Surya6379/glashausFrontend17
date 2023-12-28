@@ -1,0 +1,76 @@
+.noBorder {
+    border-width: 0px;
+}
+
+.ml15 {
+    margin-left: 15px;
+}
+
+.sidenavContainer {
+    height: 100%;
+}
+
+.sideNavList {
+    width: 300px;
+}
+
+.checkboxStyle {
+    margin-left: 7px;
+}
+
+.box {
+    height: 300px;
+    width: 350px;
+    margin: 10px;
+}
+
+.chart {
+    height: 250px;
+    width: 350px;
+}
+
+.canvasjs-chart-canvas {
+    height: 100px;
+}
+
+.chartContainer {
+    height: 100%;
+}
+
+mat-card-content {
+    height: 100%;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.temperatureFont {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 80px;
+    margin-top: 60px;
+    color: rgb(0, 195, 255);
+}
+
+.redCol {
+    color: rgb(227, 13, 13);
+}
+
+.greenCol {
+    color: rgb(25, 212, 97);
+}
+
+.toggleSize {
+    font-size: 30px
+}
+
+.toggleContainer {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.fomrField {
+    width: 135px;
+    font-size: 15px;
+    height: 70px;
+}

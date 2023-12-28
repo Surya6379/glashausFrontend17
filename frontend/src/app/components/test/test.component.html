@@ -1,0 +1,14 @@
+<div style="display: block;">
+    <canvas
+      #panelA="base-chart"
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [type]="barChartType"
+      [plugins]="barChartPlugins"
+      (chartClick)="onClick($event)"
+    >
+    </canvas>
+  </div>
